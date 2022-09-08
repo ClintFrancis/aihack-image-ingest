@@ -1,0 +1,12 @@
+@hostname = localhost
+@port = 7071
+@host = {{hostname}}:{{port}}
+@contentType = application/json
+@createdAt = {{$datetime iso8601}}
+
+###
+# Submit a demo image
+# @name submitDemoImage
+POST http://{{host}}/api/process_image HTTP/1.2
+
+< ./SampleData/IMG_0013.JPG
