@@ -15,23 +15,23 @@ namespace Datacom.Envirohack
             log.LogInformation($"C# Blob trigger function Processed blob\n Name:{name} \n Size: {myBlob.Length} Bytes");
 
             string requestBody = String.Empty;
-            MetaData metaData;
-
-            // Get CameraLocation from Blob Name
-            var cameraLocaiton = RatCameraLocationUtils.GetCameraLocation(name);
-            // write name and location to console
-            Console.WriteLine($"Name: {name}, Camera Location: {cameraLocaiton}");
+            var rat = RatUtils.CreateRat(name);
             
             using (StreamReader streamReader =  new  StreamReader(myBlob))
             {
                 requestBody = await streamReader.ReadToEndAsync();
                 streamReader.BaseStream.Position = 0;
-                metaData = ImageUtils.GetExifData(streamReader.BaseStream, log);
+
+                var imageDetails = ImageUtils.GetExifData(streamReader.BaseStream, log);
+                
+
+                if(imageDetails.captureDate != DateTime.MinValue)
+                    rat.Metadata.SourceDateTime = imageDetails.captureDate;
 
                 var result = CustomVisionService.GetPredictionResult(streamReader.BaseStream, log);
                 // Loop over each prediction and write out the results
                 
-                Console.WriteLine(metaData.DateTimeOriginal);
+                Console.WriteLine(imageDetails.captureDate);
                 foreach (var c in result.Predictions)
                 {
                     Console.WriteLine($"\t{c.TagName}: {c.Probability:P1}");

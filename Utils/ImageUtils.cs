@@ -8,10 +8,9 @@ namespace Datacom.Envirohack
 {
     public static class ImageUtils
     {
-        public static MetaData GetExifData(Stream fileStream, ILogger log)
+        public static (DateTime captureDate, bool isDayTime) GetExifData(Stream fileStream, ILogger log)
         {
             fileStream.Position = 0;
-            var result = new MetaData();
             try
             {
                 var exifReader = new ExifReader(fileStream);
@@ -25,8 +24,11 @@ namespace Datacom.Envirohack
                 }
                 else
                 {
-                    result.DateTimeOriginal = DateTime.ParseExact(dateTimeOriginal, "yyyy:MM:dd HH:mm:ss", CultureInfo.InvariantCulture);
-                    result.IsDaytime = result.DateTimeOriginal.Hour > 6 && result.DateTimeOriginal.Hour < 18;
+                    var date = DateTime.ParseExact(dateTimeOriginal, "yyyy:MM:dd HH:mm:ss", CultureInfo.InvariantCulture);
+                    return (
+                        date,
+                        date.Hour > 6 && date.Hour < 18
+                    );
                 }
             }
             catch (Exception e)
@@ -34,7 +36,7 @@ namespace Datacom.Envirohack
                 log.LogInformation(e.Message);
             }
 
-            return result;
+            return (DateTime.MinValue, true);
         }
     }
 }

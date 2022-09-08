@@ -25,13 +25,17 @@ namespace Datacom.Envirohack
             log.LogInformation("C# HTTP trigger function processed a request.");
 
             string requestBody = String.Empty;
-            MetaData metaData;
             
             using (StreamReader streamReader =  new  StreamReader(req.Body))
             {
                 requestBody = await streamReader.ReadToEndAsync();
                 streamReader.BaseStream.Position = 0;
-                metaData = ImageUtils.GetExifData(streamReader.BaseStream, log);
+                var imageDetails = ImageUtils.GetExifData(streamReader.BaseStream, log);
+                if(imageDetails.captureDate == DateTime.MinValue)
+                {
+                    // The result was bad
+                    log.LogInformation($"Image has no capture date");
+                }
 
                 var result = CustomVisionService.GetPredictionResult(streamReader.BaseStream, log);
                 // Loop over each prediction and write out the results
@@ -43,7 +47,7 @@ namespace Datacom.Envirohack
 
             // TODO connect to CosmosDB
 
-            return new OkObjectResult(metaData);
+            return new OkObjectResult("Image Processed");
         }
 
         [FunctionName("location")]
@@ -55,7 +59,7 @@ namespace Datacom.Envirohack
 
             // get name query from request
             string name = req.Query["name"];
-            var location = RatCameraLocationUtils.GetCameraLocation(name);
+            var location = RatUtils.GetCameraLocation(name);
 
             return new OkObjectResult(location);
         }
