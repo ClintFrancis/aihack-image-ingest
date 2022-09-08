@@ -16,6 +16,11 @@ namespace Datacom.Envirohack
 
             string requestBody = String.Empty;
             MetaData metaData;
+
+            // Get CameraLocation from Blob Name
+            var cameraLocaiton = RatCameraLocationUtils.GetCameraLocation(name);
+            // write name and location to console
+            Console.WriteLine($"Name: {name}, Camera Location: {cameraLocaiton}");
             
             using (StreamReader streamReader =  new  StreamReader(myBlob))
             {

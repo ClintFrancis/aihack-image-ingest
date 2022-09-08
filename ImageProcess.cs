@@ -45,5 +45,19 @@ namespace Datacom.Envirohack
 
             return new OkObjectResult(metaData);
         }
+
+        [FunctionName("location")]
+        public static async Task<IActionResult> Location(
+            [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = null)] HttpRequest req,
+            ILogger log)
+        {
+            log.LogInformation("C# HTTP trigger function processed a request.");
+
+            // get name query from request
+            string name = req.Query["name"];
+            var location = RatCameraLocationUtils.GetCameraLocation(name);
+
+            return new OkObjectResult(location);
+        }
     }
 }

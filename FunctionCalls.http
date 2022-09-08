@@ -10,3 +10,8 @@
 POST http://{{host}}/api/process_image HTTP/1.2
 
 < ./SampleData/IMG_0013.JPG
+
+###
+# Check camera location from file name
+# @name nameCheck
+GET http://{{host}}/api/location?name=RC05_test.jpg HTTP/1.2
