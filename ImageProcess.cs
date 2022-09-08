@@ -41,6 +41,8 @@ namespace Datacom.Envirohack
                 }
             }
 
+            // TODO connect to CosmosDB
+
             return new OkObjectResult(metaData);
         }
 

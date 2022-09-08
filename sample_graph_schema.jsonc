@@ -1,0 +1,182 @@
+[
+    {
+        // Categories: Freshwater, Land and Soil, Biodiversity and Land based ecosystems, Marine Environment, Weather
+        // Simplified: Freshwater, Land, Marine, Weather
+        "freshwater":{
+            "environment":"environmentObject",
+            "flora":"floraObject",
+            "fauna":"faunaObject"
+        },
+        "Land":{
+            "environment":"environmentObject",
+            "flora":"floraObject",
+            "fauna":"faunaObject"
+        },
+        "Marine":{
+            "environment":"environmentObject",
+            "flora":"floraObject",
+            "fauna":"faunaObject"
+        },
+        "Weather":{
+            "location":"LocationObject",
+            "precipitation":{
+
+            },
+            "temperature":{
+
+            },
+            "wind":{
+
+            },
+            "humidity":{
+
+            },
+            "pressure":{
+
+            },
+            "clouds":{
+
+            },
+            "visibility":{
+
+            }
+        }
+    },
+
+    // Location object
+    {
+        "location":{
+            "region": "string",
+            "latitude": 37.422,
+            "longitude": -122.084
+        }
+    },
+
+    // Media object
+    {
+        "media": {
+            "type": "image",
+            "filename": "image1.jpg",
+            "mediaType": "image/jpeg",
+            "url": "https://www.google.com/images/branding/googlelogo/1x/image1.jpg",
+            "captureDateTime": "2019-01-01T00:00:00Z",
+            "isDaylight"    : true
+        }
+    },
+
+    // Flora / Fauna object
+    {
+        "flora":{
+            "species": "string",
+            "commonName": "string",
+            "scientificName": "string",
+            "isNative": true,
+            "isEndangered": true,
+            "isInvasive": true,
+            "isThreatened": true,
+            "isProtected": true,
+            "location": "LocationObject",
+
+            "confidence": 0.5,
+            "tags": [
+                {
+                    "name": "tag1",
+                    "value": "value1"
+                },
+                {
+                    "name": "tag2",
+                    "value": "value2"
+                }
+            ],
+            "dataset":"datasetId",
+            "media": {
+                "type": "image",
+                "filename": "image1.jpg",
+                "mediaType": "image/jpeg",
+                "url": "https://www.google.com/images/branding/googlelogo/1x/image1.jpg",
+                "captureDateTime": "2019-01-01T00:00:00Z",
+                "isDaylight"    : true
+            },
+            "_metadata": {
+                "source": "CustomVision",
+                "processType":"ImageClassification",
+                "sourceDateTime": "2019-01-01T00:00:00Z",
+                "sourceTags": [
+                    "tag1",
+                    "tag2"
+                ]
+            }
+        }
+    },
+
+    // Environment object
+    {
+        "environment":{
+            // TODO: Specific environment data points
+            "location": "LocationObject",
+            "tags": [
+                {
+                    "name": "tag1",
+                    "value": "value1"
+                },
+                {
+                    "name": "tag2",
+                    "value": "value2"
+                }
+            ],
+            "dataset":"datasetId",
+            "media": {
+                "type": "image",
+                "filename": "image1.jpg",
+                "mediaType": "image/jpeg",
+                "url": "https://www.google.com/images/branding/googlelogo/1x/image1.jpg",
+                "captureDateTime": "2019-01-01T00:00:00Z",
+                "isDaylight"    : true
+            },
+            "_metadata": {
+                "source": "CustomVision",
+                "processType":"ImageClassification",
+                "sourceDateTime": "2019-01-01T00:00:00Z",
+                "sourceTags": [
+                    "tag1",
+                    "tag2"
+                ]
+            }
+        }
+    },
+    {
+        "dataset":{
+            "id":"string",
+            "name": "string",
+            "description": "string",
+            "version": "string",
+            "tags": [
+                {
+                    "name": "tag1",
+                    "value": "value1"
+                },
+                {
+                    "name": "tag2",
+                    "value": "value2"
+                }
+            ],
+            "licensor": "string",
+            "providers":"string",
+            "spatialExtent": "string",
+            "temporalExtent:": "string",
+            "firstCreated": "2019-01-01T00:00:00Z",
+            "lastUpdated": "2019-01-01T00:00:00Z",
+            "contributors": [
+                {
+                    "name": "string",
+                    "email": "string",
+                    "url": "string"
+                }
+            ],
+            "license": "string",
+            "url": "string"
+
+            
+        }
+    }
+]

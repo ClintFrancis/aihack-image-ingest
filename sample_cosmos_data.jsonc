@@ -1,0 +1,45 @@
+{
+    // Capture location
+    "location":{
+        "region": "string",
+        "latitude": 37.422,
+        "longitude": -122.084
+    },
+    "category": "Land", // TODO look up the category
+
+    // Image prediction tags
+    "primaryTag": "Rat",
+    // Confidence level?
+
+    // Do we need the tags recorded?, this is premarily for classification results is it really worth including if we only care about positive results?
+    "tags": [
+        {
+            "name": "tag1",
+            "value": "value1"
+        },
+        {
+            "name": "tag2",
+            "value": "value2"
+        }
+    ],
+
+    // Media 
+    "media": {
+        "type": "image",
+        "filename": "image1.jpg",
+        "url": "https://www.google.com/images/branding/googlelogo/1x/image1.jpg",
+        "captureDateTime": "2019-01-01T00:00:00Z",
+        "isDaylight"    : true
+    },
+
+    // Meta data for ingestion
+    "_metadata": {
+        "source": "CustomVision",
+        "processType":"ImageClassification",
+        "sourceDateTime": "2019-01-01T00:00:00Z",
+        "sourceTags": [
+            "tag1",
+            "tag2"
+        ]
+    }
+}
