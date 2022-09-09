@@ -2,6 +2,15 @@ using System.Collections.Generic;
 using Newtonsoft.Json;
 
 public class Fauna {
+    [JsonProperty("id")]
+    public string Id { get; set; }
+
+    [JsonProperty("domain")]
+    public string Domain { get; set; }
+
+    [JsonProperty("subDomain")]
+    public string SubDomain { get; set; }
+
     [JsonProperty("speciesOrder")]
     public string SpeciesOrder { get; set; }
 
@@ -10,24 +19,6 @@ public class Fauna {
 
     [JsonProperty("scientificName")]
     public string ScientificName { get; set; }
-
-    [JsonProperty("isNative")]
-    public bool IsNative { get; set; }
-
-    [JsonProperty("isEndangered")]
-    public bool IsEndangered { get; set; }
-
-    [JsonProperty("isInvasive")]
-    public bool IsInvasive { get; set; }
-
-    [JsonProperty("isThreatened")]
-    public bool IsThreatened { get; set; }
-
-    [JsonProperty("isProtected")]
-    public bool IsProtected { get; set; }
-
-    [JsonProperty("isPredator")]
-    public bool IsPredator { get; set; }
 
     [JsonProperty("location")]
     public Location Location { get; set; } = new Location();

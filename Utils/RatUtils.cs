@@ -1,5 +1,6 @@
 using System.IO;
 using System.Collections.Generic;
+using System;
 
 namespace Datacom.Envirohack {
 
@@ -36,16 +37,18 @@ namespace Datacom.Envirohack {
 
         public static Fauna CreateRat(string filename) {
             var rat = new Fauna ();
+            rat.Id = Guid.NewGuid().ToString();
+            rat.Domain = "Land";
+            rat.SubDomain = "Fauna";
             rat.CommonName = "Norwegian Rat";
             rat.ScientificName = "Rattus norvegicus";
             rat.SpeciesOrder = "Rodentia";
-            rat.IsInvasive = true;
-            rat.IsNative = false;
-            rat.IsThreatened = false;
-            rat.IsProtected = false;
-            rat.IsPredator = true;
             rat.Tags = new List<Tag>{
-                // TODO: Add tags
+                new Tag { Name = "Native", Value = "false" },
+                new Tag { Name = "Invasive", Value = "true" },
+                new Tag { Name = "Predator", Value = "true" },
+                new Tag { Name = "Threatened", Value = "false" },
+                new Tag { Name = "Protected", Value = "false" }
             };
             rat.Metadata = new MetaData{
                 Source = filename,
