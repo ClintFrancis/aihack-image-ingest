@@ -31,6 +31,8 @@ namespace Datacom.Envirohack {
             var parts = filename.Split('_');
             var cameraName = parts[0];
             var location = CameraLocations.Locations.Find(x => x.Name == cameraName);
+            location.Name = "Waiheke Island";
+            location.Region = "Hauraki Gulf";
 
             return location;
         }
@@ -56,6 +58,7 @@ namespace Datacom.Envirohack {
                 Tags = new string[] {"Rat", "Detection", "Waiheke Island"}
             };
             rat.Location = GetCameraLocation(filename);
+            rat.Dataset = "DS001_WaihekeIslandRatDetection";
 
             return rat;
         }

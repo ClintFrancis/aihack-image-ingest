@@ -5,10 +5,11 @@ using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Host;
 using Microsoft.Extensions.Logging;
 using Microsoft.Azure.Documents.Client;
+using System.Linq;
 
 namespace Datacom.Envirohack
 {
-    public class ProcessStorageImage
+    public class ProcessStxorageImage
     {
         [FunctionName("ProcessStorageImage")]
         public async Task Run(
@@ -27,7 +28,8 @@ namespace Datacom.Envirohack
             rat.Media = new Media{
                 MediaType = "Image",
                 Source = "Camera",
-                Filename = name
+                Filename = name,
+                Url = $"https://heinrichvandenheeverstrg.blob.core.windows.net/images/{name}"
             };
             
             using (StreamReader streamReader =  new  StreamReader(myBlob))
@@ -44,11 +46,9 @@ namespace Datacom.Envirohack
                 var result = CustomVisionService.GetPredictionResult(streamReader.BaseStream, log);
 
                 // find TagName = "Rat" and set the confidence
-                foreach (var prediction in result.Predictions)
-                {
-                    if(prediction.TagName == "rat"){
-                        rat.Confidence = prediction.Probability;
-                    }
+                var tag = result.Predictions.Where(x => x.TagName == "rat").FirstOrDefault();
+                if(tag != null){
+                    rat.Confidence = tag.Probability;
                 }
             }
 
