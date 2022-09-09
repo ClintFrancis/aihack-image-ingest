@@ -57,7 +57,11 @@ namespace Datacom.Envirohack {
                 ProcessType = "Cognitive Services Computer Vision",
                 Tags = new string[] {"Rat", "Detection", "Waiheke Island"}
             };
-            rat.Location = GetCameraLocation(filename);
+            try{
+                rat.Location = GetCameraLocation(filename);
+            }catch(Exception ex){
+                Console.WriteLine(ex.Message);
+            }
             rat.Dataset = "DS001_WaihekeIslandRatDetection";
 
             return rat;

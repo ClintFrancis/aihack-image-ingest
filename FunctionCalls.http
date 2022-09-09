@@ -15,3 +15,8 @@ POST http://{{host}}/api/process_image HTTP/1.2
 # Check camera location from file name
 # @name nameCheck
 GET http://{{host}}/api/location?name=RC05_test.jpg HTTP/1.2
+
+###
+# Get a sample of merged data
+# @name mergedData
+GET http://{{host}}/api/merged_data HTTP/1.2
